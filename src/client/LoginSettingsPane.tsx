@@ -140,3 +140,4 @@ export const LoginSettingsPane = () => {
     </Card>
   );
 };
+export default LoginSettingsPane;
