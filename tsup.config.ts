@@ -3,7 +3,7 @@ import { copyFileSync, mkdirSync } from 'fs';
 
 const copyCollections = () => {
   mkdirSync('dist/server/collections', { recursive: true });
-  copyFileSync('src/server/collections/loginSettings.ts', 'dist/server/collections/loginSettings.ts');
+  copyFileSync('src/server/collections/loginSettings.js', 'dist/server/collections/loginSettings.js');
 };
 
 const copyLocale = () => {
