@@ -13,14 +13,14 @@ export default defineConfig([
     clean: true,
     external: ['@nocobase/server', '@nocobase/database', '@nocobase/test'],
   },
-  // Client build (ESM for bundler consumption)
+  // Client build (CJS — NocoBase plugin loader expects .js)
   {
     entry: ['src/client/index.tsx'],
     outDir: 'dist/client',
-    format: ['esm'],
+    format: ['cjs'],
     platform: 'browser',
     target: 'es2020',
-    dts: true,
+    dts: false,
     sourcemap: false,
     clean: false,
     external: [
@@ -32,6 +32,7 @@ export default defineConfig([
       'react-i18next', 'lodash',
     ],
     loader: { '.tsx': 'tsx' },
+    noExternal: [],
   },
   // Root index
   {
