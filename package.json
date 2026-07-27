@@ -1,0 +1,37 @@
+{
+  "name": "@masuphan/plugin-login-page",
+  "version": "1.0.0",
+  "main": "dist/server/index.js",
+  "displayName": "Login Page",
+  "displayName.zh-CN": "登录页面",
+  "description": "Customizable NocoBase 2.x login page: layout options, background image carousel, title font size, tech support text.",
+  "description.zh-CN": "丰富的登录页面设置，如布局、背景图轮播、标题字号、技术支持文案。",
+  "license": "AGPL-3.0",
+  "peerDependencies": {
+    "@nocobase/client": "2.x",
+    "@nocobase/server": "2.x",
+    "@nocobase/test": "2.x"
+  },
+  "scripts": {
+    "build": "nocobase build",
+    "dev": "nocobase dev",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MasuPhan/nocobase-login-page.git"
+  },
+  "keywords": [
+    "nocobase",
+    "plugin",
+    "login",
+    "login-page",
+    "authentication"
+  ],
+  "author": "",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MasuPhan/nocobase-login-page/issues"
+  },
+  "homepage": "https://github.com/MasuPhan/nocobase-login-page#readme"
+}
