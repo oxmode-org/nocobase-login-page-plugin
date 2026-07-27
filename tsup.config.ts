@@ -1,4 +1,17 @@
 import { defineConfig } from 'tsup';
+import { copyFileSync, mkdirSync } from 'fs';
+
+const copyCollections = () => {
+  mkdirSync('dist/server/collections', { recursive: true });
+  copyFileSync('src/server/collections/loginSettings.ts', 'dist/server/collections/loginSettings.ts');
+};
+
+const copyLocale = () => {
+  mkdirSync('dist/locale', { recursive: true });
+  ['en-US', 'vi-VN', 'zh-CN'].forEach((l) => {
+    copyFileSync(`src/locale/${l}.json`, `dist/locale/${l}.json`);
+  });
+};
 
 export default defineConfig([
   // Server build (CommonJS)
@@ -12,6 +25,10 @@ export default defineConfig([
     sourcemap: false,
     clean: true,
     external: ['@nocobase/server', '@nocobase/database', '@nocobase/test'],
+    onSuccess: async () => {
+      copyCollections();
+      copyLocale();
+    },
   },
   // Client build (CJS — NocoBase plugin loader expects .js)
   {
@@ -32,7 +49,6 @@ export default defineConfig([
       'react-i18next', 'lodash',
     ],
     loader: { '.tsx': 'tsx' },
-    noExternal: [],
   },
   // Root index
   {
