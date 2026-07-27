@@ -14,9 +14,8 @@
     "@nocobase/test": "2.x"
   },
   "scripts": {
-    "build": "nocobase build",
-    "dev": "nocobase dev",
-    "start": "node server.js"
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "repository": {
     "type": "git",
