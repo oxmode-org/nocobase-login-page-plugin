@@ -2,26 +2,30 @@ import { defineCollection } from '@nocobase/database';
 
 export default defineCollection({
   name: 'loginSettings',
+  title: 'Login settings',
   fields: [
     {
-      type: 'bigInt',
-      name: 'id',
-      autoIncrement: true,
-      primaryKey: true,
-      allowNull: false,
+      type: 'string',
+      name: 'layout',
+      defaultValue: 'default',
     },
-    { type: 'string', name: 'layout' },
+    {
+      type: 'integer',
+      name: 'titleFontSize',
+      defaultValue: 28,
+    },
+    {
+      type: 'string',
+      name: 'technicalSupport',
+      defaultValue: '',
+    },
     {
       type: 'belongsToMany',
       name: 'backgroundImages',
       target: 'attachments',
       through: 'loginSettings_attachments',
-      foreignKey: 'attachmentId',
-      otherKey: 'loginSettingsId',
-      targetKey: 'id',
-      sourceKey: 'id',
+      foreignKey: 'loginSettingsId',
+      otherKey: 'attachmentId',
     },
-    { type: 'bigInt', name: 'titleFontSize' },
-    { type: 'string', name: 'technicalSupport' },
   ],
 });

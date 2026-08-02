@@ -1,2 +1,2 @@
-export * from './dist/client';
-export { default } from './dist/client';
+declare const Plugin: typeof import('./dist/client').default;
+export = Plugin;

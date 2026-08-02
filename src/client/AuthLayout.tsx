@@ -1,35 +1,14 @@
 import { css } from '@emotion/css';
-import { ReadPretty, SwitchLanguage, useAPIClient, useDocumentTitle, useRequest, useSystemSettings, useToken } from '@nocobase/client-v2';
-import { Spin, Carousel } from 'antd';
-import React, { FC, useEffect } from 'react';
+import { SwitchLanguage, useDocumentTitle, useSystemSettings, useToken } from '@nocobase/client';
+import { Carousel } from 'antd';
+import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { AuthenticatorsContext } from '@nocobase/plugin-auth/client';
+import { AuthenticatorsContextProvider } from '@nocobase/plugin-auth/client';
+import { normalizeAttachmentArray } from '../shared/login-layout';
+import { BrandLogo } from '../shared/BrandLogo';
 import { useLoginSettings } from './LoginSettingsProvider';
 import { PoweredBy } from './PoweredBy';
 
-export const AuthenticatorsContextProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-  const api = useAPIClient();
-  const { data: authenticators = [], error, loading } = useRequest(() =>
-    api
-      .resource('authenticators')
-      .publicList()
-      .then((res) => res?.data?.data || []),
-  );
-
-  if (loading) {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <Spin />
-      </div>
-    );
-  }
-
-  if (error) {
-    throw error;
-  }
-
-  return <AuthenticatorsContext.Provider value={authenticators}>{children}</AuthenticatorsContext.Provider>;
-};
 
 const contentStyle: React.CSSProperties = {
   height: '100vh',
@@ -110,7 +89,7 @@ const leftCarouselWrapper = css`
 
 export const AuthLayout = () => {
   const { data } = useSystemSettings() || {};
-  const { data: loginSettingsData } = useLoginSettings() || {};
+  const { data: loginSettingsData } = useLoginSettings();
   const { setTitle: setDocumentTitle } = useDocumentTitle();
   const { token } = useToken();
 
@@ -118,17 +97,17 @@ export const AuthLayout = () => {
     setDocumentTitle(data?.data?.title);
   }, []);
 
-  const titleFontSize = loginSettingsData?.data?.titleFontSize;
-  const titleStyle = titleFontSize ? { fontSize: `${titleFontSize}px` } : undefined;
+  const layout = loginSettingsData?.data?.layout === 'leftRight' ? 'left-right' : loginSettingsData?.data?.layout;
+  const backgroundImages = normalizeAttachmentArray<{ id: number; url: string }>(loginSettingsData?.data?.backgroundImages);
 
-  if (loginSettingsData?.data?.layout === 'leftRight') {
+  if (layout === 'left-right') {
     return (
       <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
         <div className={leftWrapper}>
           <div className={leftCarouselWrapper}>
             <Carousel autoplay dots={false} style={{ height: '100%' }}>
-              {loginSettingsData?.data?.backgroundImages?.length > 0 ? (
-                loginSettingsData?.data?.backgroundImages?.map((img: any) => (
+              {backgroundImages.length > 0 ? (
+                backgroundImages.map((img) => (
                   <div key={img.id} style={contentStyle}>
                     <img src={img.url} alt="background" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
@@ -142,11 +121,8 @@ export const AuthLayout = () => {
         <div className={rightWrapper}>
           <AuthenticatorsContextProvider>
             <div className={rightFormWrapper}>
-              <h2 style={titleStyle}>{data?.data?.title}</h2>
+              <BrandLogo />
               <Outlet />
-              <div style={{ marginTop: 20 }}>
-                <ReadPretty />
-              </div>
               <PoweredBy />
               <div style={{ textAlign: 'center', marginTop: 10 }}>
                 <SwitchLanguage />
@@ -156,12 +132,12 @@ export const AuthLayout = () => {
         </div>
       </div>
     );
-  } else if (loginSettingsData?.data?.layout === 'center') {
+  } else if (layout === 'center') {
     return (
       <div>
         <div className={carouselWrapper}>
           <Carousel autoplay dots={false} style={{ height: '100%' }}>
-            {loginSettingsData?.data?.backgroundImages?.map((img: any) => (
+            {backgroundImages.map((img) => (
               <div key={img.id} style={contentStyle}>
                 <img src={img.url} alt="background" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
@@ -169,12 +145,9 @@ export const AuthLayout = () => {
           </Carousel>
         </div>
         <div className={formWrapper}>
-          <h2 style={titleStyle}>{data?.data?.title}</h2>
+          <BrandLogo />
           <AuthenticatorsContextProvider>
             <Outlet />
-            <div style={{ marginTop: 20 }}>
-              <ReadPretty />
-            </div>
             <PoweredBy />
             <div style={{ textAlign: 'center', marginTop: 10 }}>
               <SwitchLanguage />
@@ -189,12 +162,9 @@ export const AuthLayout = () => {
   return (
     <div>
       <div className={formWrapper}>
-        <h2 style={titleStyle}>{data?.data?.title}</h2>
+        <BrandLogo />
         <AuthenticatorsContextProvider>
           <Outlet />
-          <div style={{ marginTop: 20 }}>
-            <ReadPretty />
-          </div>
           <PoweredBy />
           <div style={{ textAlign: 'center', marginTop: 10 }}>
             <SwitchLanguage />

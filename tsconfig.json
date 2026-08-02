@@ -1,26 +1,17 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": false,
-    "declaration": true,
-    "outDir": "dist",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "baseUrl": ".",
-    "paths": {
-      "@nocobase/client-v2": ["./types/nocobase-client-v2.d.ts"],
-      "@nocobase/server": ["./types/nocobase-server.d.ts"],
-      "@nocobase/database": ["./types/nocobase-database.d.ts"],
-      "@nocobase/plugin-auth/client": ["./types/nocobase-plugin-auth.d.ts"],
-      "@nocobase/utils/client": ["./types/nocobase-utils.d.ts"]
-    }
+    "strict": true,
+    "noEmit": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "src/client/LoginSettingsPane.tsx"]
 }

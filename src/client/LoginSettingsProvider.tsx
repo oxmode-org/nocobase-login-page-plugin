@@ -1,21 +1,15 @@
-import React, { createContext, ReactNode, useContext } from 'react';
-import { useRequest } from '@nocobase/client-v2';
+import { useRequest } from '@nocobase/client';
 
-export const LoginSettingsContext = createContext<any>(null);
-LoginSettingsContext.displayName = 'LoginSettingsContext';
-
-export const useLoginSettings = () => {
-  return useContext(LoginSettingsContext);
+export type LoginSettings = {
+  layout?: 'default' | 'center' | 'left-right' | 'leftRight';
+  titleFontSize?: number;
+  technicalSupport?: string;
+  backgroundImages?: Array<{ id: number; url: string }>;
 };
 
-export const LoginSettingsProvider: React.FC<{ children?: ReactNode }> = (props) => {
-  const result = useRequest({
+type LoginSettingsResponse = { data?: LoginSettings };
+
+export const useLoginSettings = () =>
+  useRequest<LoginSettingsResponse>({
     url: 'loginSettings:get/1?appends=backgroundImages',
   });
-
-  return (
-    <LoginSettingsContext.Provider value={result}>
-      {props.children}
-    </LoginSettingsContext.Provider>
-  );
-};

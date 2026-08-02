@@ -1,26 +1,12 @@
-import { Plugin } from '@nocobase/client-v2';
+import { Plugin } from '@nocobase/client';
+import { AuthLayout } from './AuthLayout';
 
 export class PluginLoginPageClient extends Plugin {
   async load() {
-    // Register settings menu item
-    this.pluginSettingsManager.addMenuItem({
-      key: 'login-page',
-      title: this.t('Login settings'),
-      icon: 'ControlOutlined',
+    this.app.router.add('auth', {
+      Component: AuthLayout,
     });
-
-    // Register settings page
-    this.pluginSettingsManager.addPageTabItem({
-      menuKey: 'login-page',
-      key: 'index',
-      title: this.t('Login settings'),
-      componentLoader: () => import('./LoginSettingsPane'),
-    });
-
-    // Override auth layout route (login page)
-    this.router.add('auth', {
-      componentLoader: () => import('./AuthLayout'),
-    });
+    this.app.addComponents({ AuthLayout });
   }
 }
 

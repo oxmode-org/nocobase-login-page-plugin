@@ -16,7 +16,7 @@ NocoBase 2.x plugin for customizing the login page layout, background image caro
 
 ## Compatibility
 
-- **NocoBase 2.x** (tested on 2.1.0-beta.44)
+- **NocoBase 2.2.x** (build/test baseline: `2.2.0-beta.9`)
 - For NocoBase 1.x, use the [original plugin](https://github.com/youchaoyun/nocobase-login-settings) by 有巢数智.
 
 ## Installation

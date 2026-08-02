@@ -9,6 +9,16 @@
             "date": 1785145643026,
             "name": "/Users/masuphan/Projects/nocobase-login-page/storage/logs/main/system_2026-07-27.log",
             "hash": "5391c65b0ddb4fbe2de7bf0362b5834d9cca36c725243fad93c9fddff68b91d3"
+        },
+        {
+            "date": 1785174682817,
+            "name": "/Users/masuphan/Projects/nocobase-login-page/storage/logs/main/system_2026-07-28.log",
+            "hash": "ccd8cdd9e759eb99bea9936ff8ff9fed246a3c68001b4c3fd938c2077189c123"
+        },
+        {
+            "date": 1785690466891,
+            "name": "/Users/masuphan/Projects/nocobase-login-page/storage/logs/main/system_2026-08-03.log",
+            "hash": "e7d7637e26bc364c5bff64d8d853ccac083b58badd7063112ab08589ce8e0622"
         }
     ],
     "hashType": "sha256"
