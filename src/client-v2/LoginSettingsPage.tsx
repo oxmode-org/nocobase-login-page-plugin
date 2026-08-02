@@ -228,7 +228,7 @@ export const LoginSettingsPage = () => {
 
         <div style={{ marginTop: token.marginLG, textAlign: 'right' }}>
           <Typography.Link
-            href="https://github.com/oxmode-org/nocobase-login-page"
+            href="https://github.com/oxmode-org/nocobase-login-page-plugin"
             target="_blank"
             rel="noreferrer"
             style={{ fontSize: token.fontSizeSM, color: token.colorTextTertiary }}
