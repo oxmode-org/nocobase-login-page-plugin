@@ -1,6 +1,6 @@
 {
   "name": "@masuphan/plugin-login-page",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "main": "dist/server/index.js",
   "displayName": "Login Page",
   "displayName.zh-CN": "登录页面",

@@ -19,7 +19,7 @@ test('ships a real legacy auth entry alongside the client-v2 settings entry', ()
   const legacyClient = read('src/client/index.tsx');
   const buildScript = read('scripts/build-plugin.cjs');
 
-  assert.equal(pkg.version, '1.0.16');
+  assert.equal(pkg.version, '1.0.17');
   assert.equal(pkg.files.includes('client.js'), true, 'the public /signin shell requires a legacy root marker');
   assert.equal(pkg.files.includes('client.d.ts'), true);
   assert.equal(pkg.files.includes('dist/client'), true);
@@ -70,7 +70,7 @@ test('renders public support text without interpreting it as HTML', () => {
 test('declares the NocoBase v2 dependencies required by its server and client', () => {
   const pkg = JSON.parse(read('package.json'));
 
-  assert.equal(pkg.version, '1.0.16');
+  assert.equal(pkg.version, '1.0.17');
   assert.equal(pkg.scripts.prepack, 'npm run build && npm test');
   assert.equal(pkg.peerDependencies['@nocobase/client-v2'], '2.x');
   assert.equal(pkg.peerDependencies['@nocobase/database'], '2.x');
@@ -142,7 +142,7 @@ test('emits NocoBase 2.2 external versions accepted by workplace', () => {
     '@nocobase/test',
   ];
 
-  assert.equal(pkg.version, '1.0.16');
+  assert.equal(pkg.version, '1.0.17');
   for (const dependency of directNocoBaseDeps) {
     assert.equal(pkg.devDependencies[dependency], '2.2.0-beta.9');
   }

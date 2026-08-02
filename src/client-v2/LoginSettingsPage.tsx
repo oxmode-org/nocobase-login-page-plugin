@@ -1,5 +1,5 @@
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
-import { Alert, Button, Form, Input, InputNumber, Select, Space, Spin, Upload, message, theme } from 'antd';
+import { Alert, Button, Form, Input, InputNumber, Select, Space, Spin, Typography, Upload, message, theme } from 'antd';
 import type { UploadRequestOption } from 'rc-upload/lib/interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useApp } from '@nocobase/client-v2';
@@ -225,6 +225,17 @@ export const LoginSettingsPage = () => {
             </Button>
           </Form>
         )}
+
+        <div style={{ marginTop: token.marginLG, textAlign: 'right' }}>
+          <Typography.Link
+            href="https://github.com/MasuPhan/nocobase-login-page"
+            target="_blank"
+            rel="noreferrer"
+            style={{ fontSize: token.fontSizeSM, color: token.colorTextTertiary }}
+          >
+            {t('View source (AGPL-3.0)')}
+          </Typography.Link>
+        </div>
       </div>
     </div>
   );

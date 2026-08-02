@@ -1,3 +1,9 @@
+/**
+ * Collection schema (name + core field set) adapted from @youchaoyun/plugin-login-settings
+ * (https://github.com/youchaoyun/nocobase-login-settings), Copyright 有巢数智 (youchaoyun),
+ * licensed AGPL-3.0. Modified by Masu Phan since 2026-07-27 (title metadata, default values).
+ * This file remains licensed under AGPL-3.0 — see LICENSE.
+ */
 import { defineCollection } from '@nocobase/database';
 
 export default defineCollection({

@@ -49,7 +49,7 @@ npm install @masuphan/plugin-login-page
 
 ## Credits
 
-Inspired by and adapted from [`@youchaoyun/plugin-login-settings`](https://github.com/youchaoyun/nocobase-login-settings) by [有巢数智](https://github.com/youchaoyun) for NocoBase 1.x. Rewritten for NocoBase 2.x compatibility.
+Adapted and ported from [`@youchaoyun/plugin-login-settings`](https://github.com/youchaoyun/nocobase-login-settings) by [有巢数智](https://github.com/youchaoyun) (originally for NocoBase 1.x). The legacy client v1 layout and database collection schema are directly adapted from the original plugin, while the client-v2 layout and modern hooks have been completely rewritten to support NocoBase 2.x natively.
 
 ## License
 
