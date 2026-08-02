@@ -30,10 +30,10 @@ export default class LoginPagePlugin extends Plugin {
 
   async afterEnable() {
     const repository = this.db.getRepository('loginSettings');
-    const count = await repository.count();
+    const record = await repository.findOne({ filterByTk: 1 });
 
-    if (!count) {
-      await repository.create({ values: defaults });
+    if (!record) {
+      await repository.create({ values: { id: 1, ...defaults } });
     }
 
     await normalizeLegacyLoginLayouts(repository);

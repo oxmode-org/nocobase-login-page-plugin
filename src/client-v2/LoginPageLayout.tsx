@@ -1,7 +1,7 @@
 import { Carousel, Space, Typography, theme } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { SwitchLanguage, useApp, PoweredBy } from '@nocobase/client-v2';
+import { SwitchLanguage, useApp, PoweredBy, useSystemSettings } from '@nocobase/client-v2';
 import { AuthenticatorsContextProvider } from '@nocobase/plugin-auth/client-v2';
 import { BrandLogo } from '../shared/BrandLogo';
 import { defaultLoginSettings, normalizeLoginSettings, type Attachment, type LoginSettings } from './types';
@@ -82,6 +82,9 @@ export const LoginPageLayout = () => {
     </AuthenticatorsContextProvider>
   );
 
+  const systemSettings = useSystemSettings();
+  const systemLogoUrl = systemSettings?.data?.data?.logo?.url;
+
   const formPanel = (card = false) => (
     <div
       style={{
@@ -97,7 +100,7 @@ export const LoginPageLayout = () => {
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: token.marginLG }}>{languageSwitcher}</div>
-      <BrandLogo />
+      <BrandLogo logoUrl={systemLogoUrl} />
       {authentication}
       <div style={{ marginTop: token.marginXL }}>{footer}</div>
     </div>

@@ -19,7 +19,7 @@ test('ships a real legacy auth entry alongside the client-v2 settings entry', ()
   const legacyClient = read('src/client/index.tsx');
   const buildScript = read('scripts/build-plugin.cjs');
 
-  assert.equal(pkg.version, '1.0.15');
+  assert.equal(pkg.version, '1.0.16');
   assert.equal(pkg.files.includes('client.js'), true, 'the public /signin shell requires a legacy root marker');
   assert.equal(pkg.files.includes('client.d.ts'), true);
   assert.equal(pkg.files.includes('dist/client'), true);
@@ -49,7 +49,7 @@ test('renders the bundled company logo instead of the default text brand in ever
   assert.match(legacyLayout, /import \{ BrandLogo \} from '\.\.\/shared\/BrandLogo';/);
   assert.match(modernLayout, /import \{ BrandLogo \} from '\.\.\/shared\/BrandLogo';/);
   assert.equal((legacyLayout.match(/<BrandLogo \/>/g) || []).length, 3, 'legacy layout must cover default, center, and left-right views');
-  assert.match(modernLayout, /<BrandLogo \/>/);
+  assert.match(modernLayout, /<BrandLogo logoUrl=\{systemLogoUrl\} \/>/);
   assert.doesNotMatch(legacyLayout, /<h2 style=\{titleStyle\}>\{data\?\.data\?\.title\}<\/h2>/);
   assert.doesNotMatch(modernLayout, /<h1[^>]*>\{title\}<\/h1>/);
 });
@@ -70,7 +70,7 @@ test('renders public support text without interpreting it as HTML', () => {
 test('declares the NocoBase v2 dependencies required by its server and client', () => {
   const pkg = JSON.parse(read('package.json'));
 
-  assert.equal(pkg.version, '1.0.15');
+  assert.equal(pkg.version, '1.0.16');
   assert.equal(pkg.scripts.prepack, 'npm run build && npm test');
   assert.equal(pkg.peerDependencies['@nocobase/client-v2'], '2.x');
   assert.equal(pkg.peerDependencies['@nocobase/database'], '2.x');
@@ -82,7 +82,7 @@ test('uses only exports available to the NocoBase 2.1 client-v2 auth layout', ()
   const layout = read('src/client-v2/LoginPageLayout.tsx');
   const tsconfig = JSON.parse(read('tsconfig.json'));
 
-  assert.match(layout, /PoweredBy \} from '@nocobase\/client-v2'/);
+  assert.match(layout, /PoweredBy, useSystemSettings \} from '@nocobase\/client-v2'/);
   assert.doesNotMatch(layout, /PoweredBy \} from '@nocobase\/plugin-auth\/client-v2'/);
   assert.doesNotMatch(layout, /paddingXXL/);
   assert.ok(!tsconfig.exclude.includes('src/client'), 'the active legacy entry must participate in type checks');
@@ -142,7 +142,7 @@ test('emits NocoBase 2.2 external versions accepted by workplace', () => {
     '@nocobase/test',
   ];
 
-  assert.equal(pkg.version, '1.0.15');
+  assert.equal(pkg.version, '1.0.16');
   for (const dependency of directNocoBaseDeps) {
     assert.equal(pkg.devDependencies[dependency], '2.2.0-beta.9');
   }

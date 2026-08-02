@@ -1,10 +1,10 @@
 import React from 'react';
 import oxmodeLogo from '../assets/oxmode-logo.jpg';
 
-export const BrandLogo = () => (
+export const BrandLogo = ({ logoUrl }: { logoUrl?: string }) => (
   <img
     alt="OXMODE"
-    src={oxmodeLogo}
+    src={logoUrl || oxmodeLogo}
     style={{
       display: 'block',
       width: 210,
@@ -14,3 +14,4 @@ export const BrandLogo = () => (
     }}
   />
 );
+
