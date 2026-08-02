@@ -23,7 +23,7 @@ NocoBase 2.x plugin for customizing the login page layout, background image caro
 
 ### Via Upload (recommended)
 
-1. Download the latest `.tgz` from [Releases](https://github.com/MasuPhan/nocobase-login-page/releases).
+1. Download the latest `.tgz` from [Releases](https://github.com/oxmode-org/nocobase-login-page/releases).
 2. Go to NocoBase Admin → **Plugin Management** → **Add & Update** → **Upload Plugin**.
 3. Upload the `.tgz` file.
 4. Enable the plugin.

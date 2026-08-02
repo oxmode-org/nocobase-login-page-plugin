@@ -41,7 +41,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MasuPhan/nocobase-login-page.git"
+    "url": "git+https://github.com/oxmode-org/nocobase-login-page.git"
   },
   "keywords": [
     "nocobase",
@@ -53,9 +53,9 @@
   "author": "Masu Phan",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/MasuPhan/nocobase-login-page/issues"
+    "url": "https://github.com/oxmode-org/nocobase-login-page/issues"
   },
-  "homepage": "https://github.com/MasuPhan/nocobase-login-page#readme",
+  "homepage": "https://github.com/oxmode-org/nocobase-login-page#readme",
   "devDependencies": {
     "@ant-design/icons": "5.6.1",
     "@nocobase/actions": "2.2.0-beta.9",
