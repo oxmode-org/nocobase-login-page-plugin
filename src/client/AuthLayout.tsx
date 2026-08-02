@@ -14,6 +14,7 @@ import { Outlet } from 'react-router-dom';
 import { AuthenticatorsContextProvider } from '@nocobase/plugin-auth/client';
 import { normalizeAttachmentArray } from '../shared/login-layout';
 import { BrandLogo } from '../shared/BrandLogo';
+import { getPublicLoginMediaUrl } from '../shared/public-login-media';
 import { useLoginSettings } from './LoginSettingsProvider';
 import { PoweredBy } from './PoweredBy';
 
@@ -107,6 +108,7 @@ export const AuthLayout = () => {
 
   const layout = loginSettingsData?.data?.layout === 'leftRight' ? 'left-right' : loginSettingsData?.data?.layout;
   const backgroundImages = normalizeAttachmentArray<{ id: number; url: string }>(loginSettingsData?.data?.backgroundImages);
+  const systemLogoUrl = getPublicLoginMediaUrl(data?.data?.logo?.id ?? data?.data?.logoId);
 
   if (layout === 'left-right') {
     return (
@@ -115,11 +117,14 @@ export const AuthLayout = () => {
           <div className={leftCarouselWrapper}>
             <Carousel autoplay dots={false} style={{ height: '100%' }}>
               {backgroundImages.length > 0 ? (
-                backgroundImages.map((img) => (
-                  <div key={img.id} style={contentStyle}>
-                    <img src={img.url} alt="background" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                ))
+                backgroundImages.map((img) => {
+                  const imageUrl = getPublicLoginMediaUrl(img.id);
+                  return imageUrl ? (
+                    <div key={img.id} style={contentStyle}>
+                      <img src={imageUrl} alt="background" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                  ) : null;
+                })
               ) : (
                 <div style={{ ...contentStyle, background: token.colorBgLayout }} />
               )}
@@ -129,7 +134,7 @@ export const AuthLayout = () => {
         <div className={rightWrapper}>
           <AuthenticatorsContextProvider>
             <div className={rightFormWrapper}>
-              <BrandLogo />
+              <BrandLogo logoUrl={systemLogoUrl} />
               <Outlet />
               <PoweredBy />
               <div style={{ textAlign: 'center', marginTop: 10 }}>
@@ -145,15 +150,18 @@ export const AuthLayout = () => {
       <div>
         <div className={carouselWrapper}>
           <Carousel autoplay dots={false} style={{ height: '100%' }}>
-            {backgroundImages.map((img) => (
-              <div key={img.id} style={contentStyle}>
-                <img src={img.url} alt="background" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-            ))}
+            {backgroundImages.map((img) => {
+              const imageUrl = getPublicLoginMediaUrl(img.id);
+              return imageUrl ? (
+                <div key={img.id} style={contentStyle}>
+                  <img src={imageUrl} alt="background" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+              ) : null;
+            })}
           </Carousel>
         </div>
         <div className={formWrapper}>
-          <BrandLogo />
+          <BrandLogo logoUrl={systemLogoUrl} />
           <AuthenticatorsContextProvider>
             <Outlet />
             <PoweredBy />
@@ -170,7 +178,7 @@ export const AuthLayout = () => {
   return (
     <div>
       <div className={formWrapper}>
-        <BrandLogo />
+        <BrandLogo logoUrl={systemLogoUrl} />
         <AuthenticatorsContextProvider>
           <Outlet />
           <PoweredBy />

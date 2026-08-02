@@ -19,7 +19,7 @@ test('ships a real legacy auth entry alongside the client-v2 settings entry', ()
   const legacyClient = read('src/client/index.tsx');
   const buildScript = read('scripts/build-plugin.cjs');
 
-  assert.equal(pkg.version, '1.0.17');
+  assert.equal(pkg.version, '1.0.18');
   assert.equal(pkg.files.includes('client.js'), true, 'the public /signin shell requires a legacy root marker');
   assert.equal(pkg.files.includes('client.d.ts'), true);
   assert.equal(pkg.files.includes('dist/client'), true);
@@ -48,7 +48,11 @@ test('renders the bundled company logo instead of the default text brand in ever
   assert.equal(pkg.files.includes('dist/assets'), true, 'the packaged plugin must include the bundled logo asset');
   assert.match(legacyLayout, /import \{ BrandLogo \} from '\.\.\/shared\/BrandLogo';/);
   assert.match(modernLayout, /import \{ BrandLogo \} from '\.\.\/shared\/BrandLogo';/);
-  assert.equal((legacyLayout.match(/<BrandLogo \/>/g) || []).length, 3, 'legacy layout must cover default, center, and left-right views');
+  assert.equal(
+    (legacyLayout.match(/<BrandLogo logoUrl=\{systemLogoUrl\} \/>/g) || []).length,
+    3,
+    'legacy layout must cover default, center, and left-right views',
+  );
   assert.match(modernLayout, /<BrandLogo logoUrl=\{systemLogoUrl\} \/>/);
   assert.doesNotMatch(legacyLayout, /<h2 style=\{titleStyle\}>\{data\?\.data\?\.title\}<\/h2>/);
   assert.doesNotMatch(modernLayout, /<h1[^>]*>\{title\}<\/h1>/);
@@ -70,7 +74,7 @@ test('renders public support text without interpreting it as HTML', () => {
 test('declares the NocoBase v2 dependencies required by its server and client', () => {
   const pkg = JSON.parse(read('package.json'));
 
-  assert.equal(pkg.version, '1.0.17');
+  assert.equal(pkg.version, '1.0.18');
   assert.equal(pkg.scripts.prepack, 'npm run build && npm test');
   assert.equal(pkg.peerDependencies['@nocobase/client-v2'], '2.x');
   assert.equal(pkg.peerDependencies['@nocobase/database'], '2.x');
@@ -104,6 +108,29 @@ test('registers a configurable ACL snippet for the Login Page settings UI', () =
   assert.match(collection, /through: 'loginSettings_attachments'/, 'upgrade must retain the v1.0.0 attachment join table');
   assert.match(collection, /foreignKey: 'loginSettingsId'/);
   assert.match(collection, /otherKey: 'attachmentId'/);
+});
+
+test('serves only configured login media through a public allowlist endpoint', () => {
+  const server = read('src/server/plugin.ts');
+  const legacyLayout = read('src/client/AuthLayout.tsx');
+  const modernLayout = read('src/client-v2/LoginPageLayout.tsx');
+  const media = read('src/shared/public-login-media.ts');
+
+  assert.match(media, /export const getPublicLoginMediaUrl/);
+  assert.match(media, /Number\.isInteger\(attachmentId\)/);
+  assert.match(media, /loginPageMedia:get/);
+  assert.match(server, /name: 'loginPageMedia'/);
+  assert.match(server, /this\.app\.acl\.allow\('loginPageMedia', 'get', 'public'\)/);
+  assert.match(server, /backgroundImages/);
+  assert.match(server, /logoId/);
+  assert.match(server, /ctx\.throw\(404\)/);
+  assert.match(server, /getFileStream\(/);
+  assert.doesNotMatch(server, /acl\.allow\('attachments', 'get', 'public'\)/);
+  assert.match(legacyLayout, /getPublicLoginMediaUrl\(img\.id\)/);
+  assert.match(modernLayout, /getPublicLoginMediaUrl\(image\.id\)/);
+  assert.match(modernLayout, /getPublicLoginMediaUrl\(systemLogoId\)/);
+  assert.doesNotMatch(legacyLayout, /src=\{img\.url\}/);
+  assert.doesNotMatch(modernLayout, /url\(\$\{image\.url\}\)/);
 });
 
 test('compiles legacy-layout compatibility into the release artifacts', () => {
@@ -142,7 +169,7 @@ test('emits NocoBase 2.2 external versions accepted by workplace', () => {
     '@nocobase/test',
   ];
 
-  assert.equal(pkg.version, '1.0.17');
+  assert.equal(pkg.version, '1.0.18');
   for (const dependency of directNocoBaseDeps) {
     assert.equal(pkg.devDependencies[dependency], '2.2.0-beta.9');
   }

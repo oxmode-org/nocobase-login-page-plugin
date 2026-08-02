@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { SwitchLanguage, useApp, PoweredBy, useSystemSettings } from '@nocobase/client-v2';
 import { AuthenticatorsContextProvider } from '@nocobase/plugin-auth/client-v2';
 import { BrandLogo } from '../shared/BrandLogo';
+import { getPublicLoginMediaUrl } from '../shared/public-login-media';
 import { defaultLoginSettings, normalizeLoginSettings, type Attachment, type LoginSettings } from './types';
 
 const getResponseData = (response: any): LoginSettings | undefined => response?.data?.data;
@@ -15,20 +16,27 @@ const Background = ({ images }: { images: Attachment[] }) => {
 
   return (
     <Carousel autoplay autoplaySpeed={5000} effect="fade" style={{ width: '100%', height: '100%' }}>
-      {images.map((image) => (
-        <div key={image.id || image.url}>
-          <div
-            style={{
-              width: '100%',
-              height: '100vh',
-              backgroundImage: `linear-gradient(rgba(15, 23, 42, .28), rgba(15, 23, 42, .5)), url(${image.url})`,
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-            }}
-          />
-        </div>
-      ))}
+      {images.map((image) => {
+        const imageUrl = getPublicLoginMediaUrl(image.id);
+        if (!imageUrl) {
+          return null;
+        }
+
+        return (
+          <div key={image.id}>
+            <div
+              style={{
+                width: '100%',
+                height: '100vh',
+                backgroundImage: `linear-gradient(rgba(15, 23, 42, .28), rgba(15, 23, 42, .5)), url(${imageUrl})`,
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+              }}
+            />
+          </div>
+        );
+      })}
     </Carousel>
   );
 };
@@ -83,7 +91,8 @@ export const LoginPageLayout = () => {
   );
 
   const systemSettings = useSystemSettings();
-  const systemLogoUrl = systemSettings?.data?.data?.logo?.url;
+  const systemLogoId = systemSettings?.data?.data?.logo?.id ?? systemSettings?.data?.data?.logoId;
+  const systemLogoUrl = getPublicLoginMediaUrl(systemLogoId);
 
   const formPanel = (card = false) => (
     <div
