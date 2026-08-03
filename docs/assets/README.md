@@ -6,14 +6,15 @@ This folder holds real product screenshots for the GitHub README. Do not use cus
 
 | File | What to show | Recommended source | Minimum size |
 | --- | --- | --- | --- |
-| `layout-default.png` | Default login layout with the configured logo | Clean demo workspace | 1440 × 900 |
-| `layout-center.png` | Center layout with one representative background image | Clean demo workspace | 1440 × 900 |
-| `layout-left-right.png` | Left and right layout with one representative background image | Clean demo workspace | 1440 × 900 |
-| `login-settings.png` | Admin → Plugin Settings → Login Page configuration screen | Clean demo workspace | 1440 × 900 |
+| `native-nocobase-login.png` | Native NocoBase sign-in page before the plugin | Clean demo workspace | 1600 × 830 |
+| `layout-center-dark.png` | Center layout with a dark branded carousel slide | Clean demo workspace | 1600 × 831 |
+| `layout-center-light.png` | Center layout with a light carousel slide | Clean demo workspace | 1600 × 831 |
+| `layout-left-right.png` | Left and right layout with one representative background image | Clean demo workspace | 1600 × 833 |
+| `login-settings.png` | Admin → Plugin Settings → Login Page configuration screen | Clean demo workspace | 1600 × 832 |
 
 ## Capture rules
 
-- Use a desktop browser at a consistent viewport for all four images.
+- Use a desktop browser at a consistent viewport for all product-layout images.
 - Use a neutral demo logo and non-confidential image assets.
 - Show the complete login form and sufficient background area to communicate each layout.
 - Hide browser chrome, browser extensions, notifications, and account information.
@@ -22,8 +23,9 @@ This folder holds real product screenshots for the GitHub README. Do not use cus
 
 ## README placement
 
-Once all four files are available, add a `## See it in action` gallery directly after the centered README hero:
+The `## See it in action` gallery sits directly after the centered README hero:
 
-- Three login-layout images in a two-column Markdown table.
-- The settings screenshot below the layout gallery.
+- Native-vs-Center comparison in a two-column table.
+- Center-carousel and Left-and-right comparison in a second two-column table.
+- Settings screenshot below the layout gallery.
 - Every image must have meaningful alt text.

@@ -19,7 +19,57 @@
 > [!IMPORTANT]
 > The package is **not published to npm**. Install the release `.tgz` from [GitHub Releases](https://github.com/oxmode-org/nocobase-login-page-plugin/releases/latest).
 
-<!-- Preview gallery will be added here. See docs/assets/README.md for the required files. -->
+## See it in action
+
+### From native sign-in to your branded experience
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/assets/native-nocobase-login.png" alt="Native NocoBase login page with a centered form on a white background" />
+      <br />
+      <strong>Before — native NocoBase</strong>
+      <br />
+      A clean default sign-in page with the standard authentication flow.
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/assets/layout-center-dark.png" alt="OXMODE branded Center login layout with a dark background image and centered sign-in card" />
+      <br />
+      <strong>After — Center layout</strong>
+      <br />
+      A branded background carousel with the login form kept front and center.
+    </td>
+  </tr>
+</table>
+
+### Choose a layout that fits the workspace
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="docs/assets/layout-center-light.png" alt="OXMODE Center login layout on a light background carousel slide" />
+      <br />
+      <strong>Center carousel</strong>
+      <br />
+      Background slides can change while the sign-in flow remains familiar.
+    </td>
+    <td width="50%" valign="top">
+      <img src="docs/assets/layout-left-right.png" alt="OXMODE Left and right login layout with the image carousel on the left and sign-in form on the right" />
+      <br />
+      <strong>Left and right</strong>
+      <br />
+      Use a dedicated visual panel while keeping the form clear and focused.
+    </td>
+  </tr>
+</table>
+
+### Configure it in NocoBase
+
+<p align="center">
+  <img src="docs/assets/login-settings.png" alt="NocoBase Login Settings page showing layout selection, background-image upload, title font size, and technical support text" />
+</p>
+
+Choose a layout, upload image backgrounds, add support text, and submit. The plugin keeps the existing NocoBase authenticators and `Powered by NocoBase` attribution intact.
 
 ## Make sign-in part of your product
 
