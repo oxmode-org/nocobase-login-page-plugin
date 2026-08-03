@@ -1,11 +1,11 @@
 {
   "name": "@masuphan/plugin-login-page",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "main": "dist/server/index.js",
   "displayName": "Login Page",
   "displayName.zh-CN": "登录页面",
-  "description": "Customizable NocoBase 2.x login page: layout options, background image carousel, title font size, tech support text.",
-  "description.zh-CN": "丰富的登录页面设置，如布局、背景图轮播、标题字号、技术支持文案。",
+  "description": "Customizable NocoBase 2.x login page: layout options, background image carousel, and tech support text.",
+  "description.zh-CN": "丰富的登录页面设置，如布局、背景图轮播、技术支持文案。",
   "license": "AGPL-3.0",
   "peerDependencies": {
     "@nocobase/actions": "2.x",

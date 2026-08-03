@@ -5,7 +5,7 @@
  * This file remains licensed under AGPL-3.0 — see LICENSE.
  */
 import { css } from '@emotion/css';
-import { useToken } from '@nocobase/client';
+import { PoweredBy as NocoBasePoweredBy, useToken } from '@nocobase/client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLoginSettings } from './LoginSettingsProvider';
@@ -29,7 +29,10 @@ export const PoweredBy = () => {
   const supportLabel = supports[i18n.language] || supports['en-US'];
   const supportText = loginSettingsData?.data?.technicalSupport || '';
 
-  if (!supportText) return null;
-
-  return <div className={style}>{supportLabel}: {supportText}</div>;
+  return (
+    <div className={style}>
+      {supportText ? <div>{supportLabel}: {supportText}</div> : null}
+      <NocoBasePoweredBy />
+    </div>
+  );
 };

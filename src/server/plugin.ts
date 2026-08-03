@@ -66,7 +66,8 @@ export default class LoginPagePlugin extends Plugin {
           }
 
           const { stream, contentType } = await fileManager.getFileStream(attachment);
-          ctx.set('Cache-Control', 'public, max-age=300');
+          ctx.set('Cache-Control', 'private, no-store');
+          ctx.set('X-Content-Type-Options', 'nosniff');
           ctx.type = contentType || attachment.get('mimetype') || 'application/octet-stream';
           ctx.body = stream;
           await next();
