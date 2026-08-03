@@ -116,10 +116,10 @@ Run the command from the NocoBase application directory. Replace the path with t
 
 ```bash
 # First installation
-yarn nocobase pm add /absolute/path/masuphan-plugin-login-page-1.0.18.tgz
+yarn nocobase pm add /absolute/path/masuphan-plugin-login-page-1.0.20.tgz
 
 # Update an existing installation
-yarn nocobase pm update /absolute/path/masuphan-plugin-login-page-1.0.18.tgz
+yarn nocobase pm update /absolute/path/masuphan-plugin-login-page-1.0.20.tgz
 ```
 
 NocoBase may restart or reload plugin processes during an update. Back up production before making any plugin change.
