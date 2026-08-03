@@ -1,20 +1,37 @@
-# NocoBase Login Page Plugin
+<div align="center">
+  <h1>NocoBase Login Page Plugin</h1>
+  <p><strong>Make the first screen of your NocoBase workspace match your brand.</strong></p>
+  <p>A community plugin for configurable, responsive, and secure public login pages on NocoBase 2.2.x+.</p>
+  <p>
+    <a href="https://github.com/oxmode-org/nocobase-login-page-plugin/releases/latest">Download</a>
+    · <a href="#quick-start">Install</a>
+    · <a href="#security-by-design">Security</a>
+    · <a href="https://github.com/oxmode-org/nocobase-login-page-plugin/issues">Report an issue</a>
+  </p>
+  <p>
+    <a href="https://github.com/oxmode-org/nocobase-login-page-plugin/releases/latest"><img src="https://img.shields.io/github/v/release/oxmode-org/nocobase-login-page-plugin?style=flat-square" alt="Latest release" /></a>
+    <a href="https://www.nocobase.com/"><img src="https://img.shields.io/badge/NocoBase-2.2%2Bx-1f6feb?style=flat-square" alt="NocoBase 2.2+" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg?style=flat-square" alt="AGPL-3.0 license" /></a>
+    <a href="https://github.com/oxmode-org/nocobase-login-page-plugin/issues"><img src="https://img.shields.io/github/issues/oxmode-org/nocobase-login-page-plugin?style=flat-square" alt="Open issues" /></a>
+  </p>
+</div>
 
-[![NocoBase 2.x](https://img.shields.io/badge/NocoBase-2.x-1f6feb)](https://www.nocobase.com/)
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
-[![Latest release](https://img.shields.io/github/v/release/oxmode-org/nocobase-login-page-plugin)](https://github.com/oxmode-org/nocobase-login-page-plugin/releases/latest)
+> [!IMPORTANT]
+> The package is **not published to npm**. Install the release `.tgz` from [GitHub Releases](https://github.com/oxmode-org/nocobase-login-page-plugin/releases/latest).
 
-A community plugin for configuring the public login page in **NocoBase 2.2.x+**. It provides multiple layouts, a background-image carousel, technical-support text, and preserves NocoBase's native authentication flow.
+<!-- Preview gallery will be added here. See docs/assets/README.md for the required files. -->
 
-> The plugin package is **not published to npm**. Install the signed release `.tgz` from GitHub Releases.
+## Make sign-in part of your product
 
-## Features
+The plugin changes presentation, not authentication. Your existing NocoBase authenticators remain in control while the public sign-in experience gets the layout, brand logo, background imagery, and support guidance your workspace needs.
+
+## What you can configure
 
 - **Three responsive layouts**
   - **Default** — clean, focused sign-in form.
   - **Center** — sign-in form over a full-screen background-image carousel.
   - **Left and right** — carousel beside the sign-in form; stacks vertically on smaller screens.
-- **Background-image carousel** — upload and order multiple images from the plugin settings page.
+- **Background-image carousel** — upload multiple images from the plugin settings page.
 - **System logo support** — displays the logo configured in NocoBase System Settings, with a bundled OXMODE logo fallback.
 - **Public-login media handling** — selected logo and background images work even when NocoBase attachments require authentication.
 - **Native authentication compatibility** — keeps NocoBase authenticators, sign-up behaviour, language switcher, and `Powered by NocoBase` attribution intact.
@@ -32,7 +49,7 @@ A community plugin for configuring the public login page in **NocoBase 2.2.x+**.
 
 The package includes both the legacy client entry and the NocoBase client-v2 entry so existing 2.2 installations can use the relevant login shell.
 
-## Installation
+## Quick start
 
 ### Admin UI — recommended
 
@@ -69,7 +86,7 @@ After enabling the plugin, open:
 4. Click **Submit**.
 5. Open the sign-in page in a private/incognito browser window to validate the unauthenticated experience.
 
-### Logo and background-image behaviour
+## Security by design
 
 NocoBase attachment files are often private by default. A public sign-in page cannot load those files directly.
 
